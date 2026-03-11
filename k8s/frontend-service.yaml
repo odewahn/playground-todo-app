@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: odewahn-todo-app-frontend
+  namespace: odewahn-todo-app
+spec:
+  selector:
+    app: odewahn-todo-app-frontend
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  type: ClusterIP

@@ -1,0 +1,16 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: odewahn-todo-app
+  namespace: odewahn-todo-app
+spec:
+  hosts:
+    - "odewahn-todo-app.playground.gcp.oreilly.com"
+  gateways:
+    - istio-system/secure-gateway
+  http:
+    - route:
+        - destination:
+            host: odewahn-todo-app-frontend
+            port:
+              number: 80
