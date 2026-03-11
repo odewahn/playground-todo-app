@@ -36,6 +36,25 @@ export default function App() {
     setTodos((prev) => prev.filter((t) => t.id !== id));
   }
 
+  async function handleEdit(id, title) {
+    const res = await fetch(`${API}/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title }),
+    });
+    const updated = await res.json();
+    setTodos((prev) => prev.map((t) => (t.id === id ? updated : t)));
+  }
+
+  async function handleReorder(ids) {
+    setTodos(ids.map((id) => todos.find((t) => t.id === id)));
+    await fetch(`${API}/reorder`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ids }),
+    });
+  }
+
   return (
     <div>
       <h1 style={{ marginBottom: '1.5rem', fontSize: '2rem', fontWeight: 700 }}>Todos</h1>
@@ -45,7 +64,7 @@ export default function App() {
         </p>
       )}
       <AddTodo onAdd={handleAdd} />
-      <TodoList todos={todos} onToggle={handleToggle} onDelete={handleDelete} />
+      <TodoList todos={todos} onToggle={handleToggle} onDelete={handleDelete} onEdit={handleEdit} onReorder={handleReorder} />
     </div>
   );
 }

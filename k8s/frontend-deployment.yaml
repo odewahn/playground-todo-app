@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: odewahn-todo-app-frontend
-          image: us-central1-docker.pkg.dev/common-build/orm-hub/odewahn-todo-app-frontend:latest
+          image: us-central1-docker.pkg.dev/strong-keyword-184513/orm-hub/odewahn-todo-app-frontend:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
