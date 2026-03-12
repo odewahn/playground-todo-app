@@ -14,7 +14,7 @@ spec:
       containers:
         - name: migrate
           image: us-central1-docker.pkg.dev/strong-keyword-184513/orm-hub/odewahn-todo-app-backend:latest
-          command: ["node", "migrations/run.js"]
+          command: ["npm", "run", "migrate"]
           env:
             - name: DB_PASSWORD
               valueFrom:

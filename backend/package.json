@@ -5,11 +5,17 @@
   "scripts": {
     "dev": "node --watch src/index.js",
     "start": "node src/index.js",
-    "migrate": "node migrations/run.js"
+    "migrate": "node-pg-migrate up -m migrations",
+    "migrate:down": "node-pg-migrate down -m migrations",
+    "migrate:create": "node-pg-migrate create -m migrations --migration-file-language sql"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "node-pg-migrate": "^7.0.0",
     "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "dotenv": "^17.3.1"
   }
 }
